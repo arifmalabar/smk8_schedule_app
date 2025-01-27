@@ -6,10 +6,19 @@
 
 package com.k8.sch.model;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author hp
  */
-public class Times {
+public class Times extends BaseModel {
+
+    public Times(List<Map<String, String>> data, String[] colname) {
+        super(data, colname);
+    }
+
+    
     
 }

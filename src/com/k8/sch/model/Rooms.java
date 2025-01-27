@@ -15,8 +15,9 @@ import java.util.Map;
  */
 public class Rooms extends BaseModel {
 
-    public Rooms(List<Map<String, String>> data, int colcount) {
-        super(data, colcount);
+    public Rooms(List<Map<String, String>> data, String[] colname) {
+        super(data, colname);
     }
+
     
 }

@@ -15,9 +15,11 @@ import java.util.Map;
  */
 public class Teachers extends BaseModel {
 
-    public Teachers(List<Map<String, String>> data, int colcount) {
-        super(data, colcount);
+    public Teachers(List<Map<String, String>> data, String[] colname) {
+        super(data, colname);
     }
+
+    
     
     
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jan 2025 pada 17.13
+-- Waktu pembuatan: 27 Jan 2025 pada 09.58
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.0.15
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `k8_jadwal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `days`
+--
+
+CREATE TABLE `days` (
+  `day_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hours`
+--
+
+CREATE TABLE `hours` (
+  `hour` int(200) NOT NULL,
+  `begin_times` time NOT NULL,
+  `end_times` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `hours`
+--
+
+INSERT INTO `hours` (`hour`, `begin_times`, `end_times`) VALUES
+(1, '06:00:00', '07:45:00'),
+(2, '07:45:00', '08:45:00');
 
 -- --------------------------------------------------------
 
@@ -55,6 +85,18 @@ INSERT INTO `teachers` (`NIP`, `name`, `phone`, `gender`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `days`
+--
+ALTER TABLE `days`
+  ADD PRIMARY KEY (`day_name`);
+
+--
+-- Indeks untuk tabel `hours`
+--
+ALTER TABLE `hours`
+  ADD PRIMARY KEY (`hour`);
 
 --
 -- Indeks untuk tabel `rooms`

@@ -66,9 +66,8 @@ public class TeachersController implements BaseController {
     }
     public Teachers getModel() throws Exception
     {
-        /*String test = getData().get(0).keySet().toArray()[0].toString();
-        System.out.println(test);*/
-        Teachers tc = new Teachers(getData(), 4);
+        String[] colname = {"NIP", "name", "phone", "gender"};
+        Teachers tc = new Teachers(getData(), colname);
         return tc;
     }
 

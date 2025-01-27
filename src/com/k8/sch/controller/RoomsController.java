@@ -50,7 +50,8 @@ public class RoomsController implements BaseController {
     }
     public Rooms getModel() throws Exception
     {
-        return new Rooms(getData(), 2);
+        String[] colname = {"room", "number"};
+        return new Rooms(getData(), colname);
     }
 
     @Override

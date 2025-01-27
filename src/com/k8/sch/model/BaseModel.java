@@ -17,12 +17,19 @@ import javax.swing.table.AbstractTableModel;
  */
 public class BaseModel extends AbstractTableModel {
     private List<Map<String, String>> data;
+    private String[] colname;  
     private int colcount;
 
     public BaseModel(List<Map<String, String>> data, int colcount) {
         this.data = data;
         this.colcount = colcount;
     }
+
+    public BaseModel(List<Map<String, String>> data, String[] colname) {
+        this.data = data;
+        this.colname = colname;
+    }
+    
 
     @Override
     public int getRowCount() {
@@ -31,7 +38,17 @@ public class BaseModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return colcount;
+        if(colcount == 0)
+        {
+            return colname.length;
+        } else {
+            return colcount;
+        }
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return colname[column];
     }
 
     @Override
