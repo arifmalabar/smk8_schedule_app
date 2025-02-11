@@ -7,6 +7,7 @@
 package com.k8.sch.gui;
 
 import com.k8.sch.model.User;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,6 +44,7 @@ public class MainGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("K8 Schedule");
 
         jButton2.setText("Ruangan");
 
@@ -62,6 +64,11 @@ public class MainGUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Logout");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -110,6 +117,20 @@ public class MainGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        int logoutmsg = JOptionPane.showConfirmDialog(null, "Apakah anda ingin melakukan logout?");
+        switch(logoutmsg)
+        {
+            case 0:
+                this.hide();
+                new LoginGUI().show();
+            break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "Batal melakukan logout");
+            break;
+        }
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
