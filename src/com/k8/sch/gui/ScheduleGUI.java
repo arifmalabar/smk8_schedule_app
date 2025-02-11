@@ -8,6 +8,7 @@ package com.k8.sch.gui;
 
 import com.k8.sch.controller.DayController;
 import com.k8.sch.controller.RoomsController;
+import com.k8.sch.controller.ScheduleController;
 import com.k8.sch.controller.StudyController;
 import com.k8.sch.controller.StudyPeriodController;
 import com.k8.sch.controller.TeachersController;
@@ -26,13 +27,26 @@ public class ScheduleGUI extends javax.swing.JFrame {
     /**
      * Creates new form ScheduleGUI
      */
+    private ScheduleController sch;
     public ScheduleGUI() {
         initComponents();
+        sch = new ScheduleController();
         try {
             initData();
         } catch (Exception e) {
             showMsg(e.getMessage());
         }
+    }
+    private void setData() throws Exception
+    {
+        sch.setDayname(getId(new DayController().getData(), cbHari, "day_name"));
+        sch.setNIP(Integer.parseInt(getId(new TeachersController().getData(), cbGuru, "nip")));
+        sch.setHour(Integer.parseInt(getId(new TimesController().getData(), cbDari, "hour")));
+        sch.setRoom_id(getId(new RoomsController().getData(), cbRuangan, "room_id"));
+    }
+    private String getId(List<Map<String, String>> data, JComboBox cb, String key) throws Exception
+    {
+        return data.get(cb.getSelectedIndex()).get(key);
     }
     private void initData() throws Exception
     {
@@ -117,6 +131,11 @@ public class ScheduleGUI extends javax.swing.JFrame {
         cbMp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Simpan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Hapus");
 
@@ -269,6 +288,15 @@ public class ScheduleGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            setData();
+            sch.insertData();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

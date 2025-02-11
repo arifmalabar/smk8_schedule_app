@@ -18,7 +18,10 @@ import java.util.Map;
  *
  * @author hp
  */
-public class DayController {
+public class DayController extends Controller {
+
+    
+    
     public List<Map<String, String>> getData() throws Exception
     {
         String sql = "SELECT * FROM `days`";
@@ -34,4 +37,5 @@ public class DayController {
         return data;
         
     }
+    
 }

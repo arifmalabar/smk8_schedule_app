@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author hp
  */
-public abstract class Controller {
+public class Controller  {
 
     protected String selectData, insertData, updateData, deleteData;
     private PreparedStatement ps;
@@ -26,5 +26,8 @@ public abstract class Controller {
         ResultSet rs = ps.executeQuery();
         return rs;
     }
-    
+    /*protected String getId(List<Map<String, String>> data, int index, String key)
+    {
+        return data.get(index).get(key);
+    }*/
 }
