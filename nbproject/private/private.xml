@@ -5,9 +5,12 @@
         <group>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/RoomsController.java</file>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/LoginGUI.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/Controller.java</file>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/MainGUI.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/ScheduleController.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/TeachersController.java</file>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/ScheduleGUI.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/LoginController.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/DayController.java</file>
         </group>
     </open-files>
 </project-private>

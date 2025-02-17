@@ -7,6 +7,8 @@
 package com.k8.sch.gui;
 
 import com.k8.sch.controller.TeachersController;
+import com.k8.sch.exception.ValidationErrorException;
+import com.k8.sch.helper.FormValidation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -36,8 +38,13 @@ public class TeachersGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    private void setData()
+    private void setData() throws Exception
     {
+        FormValidation.checkEmptyField(String.valueOf(txtNIP.getText()), "NIP tidak boleh kosong");
+        FormValidation.checkZeroField(Integer.parseInt(txtNIP.getText()), "NIP tidak boleh bernilai 0");
+        FormValidation.checkEmptyField(txtNama.getText(), "Nama tidak boleh kosong");
+        FormValidation.checkEmptyField(txtNotelp.getText(), "Notelp tidak boleh kosong");
+        
         teachers.setNip(Integer.parseInt(txtNIP.getText()));
         teachers.setNama(txtNama.getText());
         teachers.setPhone(txtNotelp.getText());

@@ -7,6 +7,8 @@
 package com.k8.sch.gui;
 
 import com.k8.sch.controller.LoginController;
+import com.k8.sch.helper.FormValidation;
+import com.k8.sch.helper.MessageBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +24,10 @@ public class LoginGUI extends javax.swing.JFrame {
     public LoginGUI() {
         initComponents();
     }
-    private void setData()
+    private void setData() throws Exception
     {
+        FormValidation.checkEmptyField(txtUsername.getText(), "Username anda kosong");
+        FormValidation.checkEmptyField(txtPassword.getText(), "Password anda kosong");
         login = new LoginController(txtUsername.getText(), txtPassword.getText());
     }
 
@@ -148,7 +152,7 @@ public class LoginGUI extends javax.swing.JFrame {
             login.doLogin();
             this.hide();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            new MessageBox(e.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

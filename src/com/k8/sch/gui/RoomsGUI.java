@@ -7,6 +7,10 @@
 package com.k8.sch.gui;
 
 import com.k8.sch.controller.RoomsController;
+import com.k8.sch.helper.FormValidation;
+import com.k8.sch.exception.ValidationErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,13 +37,16 @@ public class RoomsGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    private void setData(){
+    private void setData() throws Exception {
+        FormValidation.checkEmptyField(txtKdRuang.getText(), "Kode Ruang belum diisi");
+        FormValidation.checkEmptyField(String.valueOf(txtNoRuang.getText()), "Nomor ruang belum diisi");
+        FormValidation.checkZeroField(Integer.parseInt(txtNoRuang.getText()), "nomor ruang tidak boleh bernilai 0");
         room.setRooms_id(txtKdRuang.getText());
         room.setNumber(Integer.parseInt(txtNoRuang.getText()));
     }
     private void clearData()
     {
-        txtKdRuang.setText("0");
+        txtKdRuang.setText("");
         txtNoRuang.setText("0");
     }
 

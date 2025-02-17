@@ -7,6 +7,7 @@
 package com.k8.sch.gui;
 
 import com.k8.sch.controller.StudyController;
+import com.k8.sch.helper.FormValidation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,8 +36,10 @@ public class StudyGUI extends javax.swing.JFrame {
             showMSg(ex.getMessage());
         }
     }
-    private void setData()
+    private void setData() throws Exception
     {
+        FormValidation.checkEmptyField(txtKdMapel.getText(), "Kode mapel tidak boleh kosong");
+        FormValidation.checkEmptyField(txtNmMapel.getText(), "Nama mapel tidak boleh kosong");
         std = new StudyController(txtKdMapel.getText(), txtNmMapel.getText());
     }
     private void resetData()
