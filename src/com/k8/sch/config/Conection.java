@@ -16,6 +16,7 @@ import java.sql.Connection;
 public class Conection {
     public static Connection openConection() throws Exception
     {
+        Thread.sleep(3000);
         MysqlDataSource ds = new MysqlDataSource();
         ds.setUser("root");
         ds.setPassword("");

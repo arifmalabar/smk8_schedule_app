@@ -5,12 +5,13 @@
         <group>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/RoomsController.java</file>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/LoginGUI.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/Controller.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/MainGUI.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/ScheduleController.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/TeachersController.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/helper/ConfirmDialog.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/StudyGUI.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/exception/ValidationErrorException.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/RoomsGUI.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/TeachersGUI.java</file>
             <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/gui/ScheduleGUI.java</file>
-            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/controller/DayController.java</file>
+            <file>file:/D:/projek/java_project/schedule_app/src/com/k8/sch/helper/MessageBox.java</file>
         </group>
     </open-files>
 </project-private>

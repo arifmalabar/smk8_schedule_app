@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 
-package com.k8.sch.helper;
-
-import javax.swing.JOptionPane;
+package com.k8.sch.gui;
 
 /**
  *
  * @author hp
  */
-public class ConfirmDialog {
-
-    public static int ConfirmDialog(String message) {
-        return JOptionPane.showConfirmDialog(null, message);
-    }
+public interface BaseGUI {
+    public void setModel();
+    public void setData() throws Exception;
+    public void clearData();
 }

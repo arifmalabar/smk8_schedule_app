@@ -4,17 +4,19 @@
  * and open the template in the editor.
  */
 
-package com.k8.sch.helper;
+package com.k8.sch.model;
 
-import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author hp
  */
-public class ConfirmDialog {
+public class Day extends BaseModel {
 
-    public static int ConfirmDialog(String message) {
-        return JOptionPane.showConfirmDialog(null, message);
+    public Day(List<Map<String, String>> data, String[] colname) {
+        super(data, colname);
     }
+    
 }

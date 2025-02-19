@@ -6,50 +6,45 @@
 
 package com.k8.sch.gui;
 
-import com.k8.sch.controller.RoomsController;
-import com.k8.sch.helper.FormValidation;
+import com.k8.sch.controller.DayController;
 import com.k8.sch.exception.ValidationErrorException;
 import com.k8.sch.helper.ClearForm;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import com.k8.sch.helper.ConfirmDialog;
+import com.k8.sch.helper.FormValidation;
+import com.k8.sch.helper.MessageBox;
 import javax.swing.JTextField;
 
 /**
  *
  * @author hp
  */
-public class RoomsGUI extends javax.swing.JFrame {
+public class DayGUI extends javax.swing.JFrame implements BaseGUI {
 
     /**
-     * Creates new form KelasGUI
+     * Creates new form DayGUI
      */
-    public RoomsController room;
-    public String room_id;
-    public RoomsGUI() {
+    private DayController day;
+    private String last;
+    public DayGUI() {
         initComponents();
-        room = new RoomsController();
-        setTabel();
+        day = new DayController();
+        setModel();
     }
-    private void setTabel()
+    public void setModel()
     {
         try {
-            tbRooms.setModel(room.getModel());
+            tbHari.setModel(day.getTableModel());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            new MessageBox("Errror : "+e.getMessage());
         }
     }
-    private void setData() throws Exception {
-        FormValidation.checkEmptyField(txtKdRuang.getText(), "Kode Ruang belum diisi");
-        FormValidation.checkEmptyField(String.valueOf(txtNoRuang.getText()), "Nomor ruang belum diisi");
-        FormValidation.checkZeroField(Integer.parseInt(txtNoRuang.getText()), "nomor ruang tidak boleh bernilai 0");
-        room.setRooms_id(txtKdRuang.getText());
-        room.setNumber(Integer.parseInt(txtNoRuang.getText()));
+    public void setData() throws ValidationErrorException{
+        FormValidation.checkEmptyField(txtNmHari.getText(), "Nama hari masih kosong");
+        day = new DayController(txtNmHari.getText());
     }
-    private void clearData()
+    public void clearData()
     {
-        JTextField[] field = {txtKdRuang, txtNoRuang};
-        ClearForm.clearTextField(field);
+        txtNmHari.setText("");
     }
 
     /**
@@ -61,43 +56,38 @@ public class RoomsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txtKdRuang = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtNoRuang = new javax.swing.JTextField();
+        txtNmHari = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbRooms = new javax.swing.JTable();
+        tbHari = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pendataan Ruang"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Isi Data Hari"));
 
-        jLabel3.setText("Kode Ruang");
+        jLabel1.setText("Nama Hari");
 
-        jLabel1.setText("Nomor Ruang");
-
-        jButton1.setText("Proses");
+        jButton1.setText("Tambah");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ubah");
+        jButton2.setText("Hapus");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Hapus");
+        jButton3.setText("Ubah");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -118,13 +108,10 @@ public class RoomsGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtKdRuang)
-                    .addComponent(txtNoRuang)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtNmHari)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4)
@@ -140,14 +127,10 @@ public class RoomsGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtKdRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNoRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addComponent(txtNmHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -156,9 +139,9 @@ public class RoomsGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Ruang"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Hari"));
 
-        tbRooms.setModel(new javax.swing.table.DefaultTableModel(
+        tbHari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -169,12 +152,12 @@ public class RoomsGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tbRooms.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbHari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbRoomsMouseClicked(evt);
+                tbHariMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbRooms);
+        jScrollPane1.setViewportView(tbHari);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,12 +165,15 @@ public class RoomsGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,9 +192,9 @@ public class RoomsGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,59 +203,54 @@ public class RoomsGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             setData();
-            room.insertData();
+            day.insertData();
             clearData();
-            setTabel();
+            setModel();
+            new MessageBox("Data Berhasil ditambah");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            new MessageBox(e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tbRoomsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRoomsMouseClicked
-        int col = tbRooms.getSelectedColumn();
+    private void tbHariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHariMouseClicked
+        int row = tbHari.getSelectedRow();
         try {
-            txtKdRuang.setText(room.getData().get(col).get("room_id"));
-            txtNoRuang.setText(room.getData().get(col).get("number"));
-            this.room_id = txtKdRuang.getText();
+            String nama = day.getData().get(row).get("day_name");
+            txtNmHari.setText(nama);
+            last = nama;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            new MessageBox(e.getMessage());
         }
-    }//GEN-LAST:event_tbRoomsMouseClicked
+    }//GEN-LAST:event_tbHariMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            setData();
-            room.updateData(room_id);
-            clearData();
-            setTabel();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ClearForm.clearTextField(txtNmHari);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            int conf = JOptionPane.showConfirmDialog(null, "APakah anda ingin menhhapus dta");
-            switch(conf)
-            {
-                case 0:
-                    setData();
-                    room.hapusData(room_id);
-                    clearData();
-                    setTabel();
-                break;
-                case 1:
-                    JOptionPane.showMessageDialog(null, "Batal hapus data");
-                break;
-            }
+            setData();
+            day.updateData(last);
+            clearData();
+            setModel();
+            new MessageBox("Data Berhasil diubah");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            new MessageBox(e.getMessage());
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        clearData();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int conf = ConfirmDialog.ConfirmDialog("Apakah anda ingin menghapus data");
+        if(conf == 0)
+        {
+            try {
+                day.hapusData(last);
+                setModel();
+            } catch (Exception e) {
+                new MessageBox(e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,37 +269,34 @@ public class RoomsGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RoomsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RoomsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RoomsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RoomsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomsGUI().setVisible(true);
+                new DayGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbRooms;
-    private javax.swing.JTextField txtKdRuang;
-    private javax.swing.JTextField txtNoRuang;
+    private javax.swing.JTable tbHari;
+    private javax.swing.JTextField txtNmHari;
     // End of variables declaration//GEN-END:variables
 }
