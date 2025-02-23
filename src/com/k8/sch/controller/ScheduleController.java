@@ -7,6 +7,9 @@
 package com.k8.sch.controller;
 
 import com.k8.sch.config.Conection;
+import com.k8.sch.exception.GuruKosongException;
+import com.k8.sch.exception.JadwalNotFoundException;
+import com.k8.sch.helper.MessageBox;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.Year;
@@ -72,9 +75,11 @@ public class ScheduleController implements BaseController {
     @Override
     public void insertData() throws Exception {
         if(!(isRoomUsed())){
-            throw new Exception("Ruangan sudah digunakan di jam lain");
+            throw new JadwalNotFoundException("Ruangan sudah digunakan di jam lain");
+        } else if(!(isGuruKosong())){
+            throw new GuruKosongException("Guru mengajar di jam lain");
         } else {
-            throw new Exception("ruangan belum digunakan");
+            sql = "INSERT INTO `schedule`(`schedule_id`, `hour`, `day_name`, `room_id`, `year`, `NIP`, `study_id`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]')";
         }
     }
     
@@ -89,6 +94,20 @@ public class ScheduleController implements BaseController {
             return false; //jika ruangan digunakan
         } else {
             return true; //jika ruangan tidak digunakan
+        }
+    }
+    private boolean isGuruKosong() throws Exception
+    {
+        sql = "SELECT * FROM `schedule` WHERE NIP=? AND day_name=? AND hour=?";
+        PreparedStatement ps = Conection.openConection().prepareCall(sql);
+        ps.setInt(1, NIP);
+        ps.setString(2, dayname);
+        ps.setInt(3, hour);
+        ResultSet rs = ps.executeQuery();
+        if(rs.first()){
+            return false;
+        } else {
+            return true;
         }
     }
     
